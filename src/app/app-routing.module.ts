@@ -5,6 +5,7 @@ import { UsersComponent } from './components/users/users.component';
 import { AddUsersComponent } from './components/add-users/add-users.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { HostComponent } from './components/host/host.component';
 import { CheckUnsavedDataGuard } from './guards/check-unsaved-data.guard';
 import { UserResolverService } from './resolvers/user-resolver.service';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
 	  component: DialogComponent,
 	  outlet: 'dialog'
 	},
+	{ path: 'dynamicloading', component: HostComponent },
     //the below wild card path matches any url entered in browser, so if the entered url doesn't match any of the above url; the below component is displayed.
     //Make sure this is at the end else it will always get matched first and no other routes will be looked up for matching. This can be used for displaying 
     //Page not found kind of components
@@ -37,4 +39,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const RoutedComponents = [UsersComponent, AddUsersComponent, DialogComponent];
+export const RoutedComponents = [UsersComponent, AddUsersComponent, DialogComponent, HostComponent];

@@ -8,7 +8,13 @@ import { AddUsersComponent } from './components/add-users/add-users.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { UsersService } from './services/users.service';
+import { CompService } from './services/comp.service';
 import { InitialsPipe } from './pipes/initials.pipe';
+import { HostComponent } from './components/host/host.component';
+import { CompHostDirective } from './directives/comp-host.directive';
+import { PoorComponent } from './components/poor/poor.component';
+import { AverageComponent } from './components/average/average.component';
+import { GoodComponent } from './components/good/good.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +23,24 @@ import { InitialsPipe } from './pipes/initials.pipe';
     AddUsersComponent,
     HeaderComponent,
     DialogComponent,
-    InitialsPipe
+    InitialsPipe,
+    HostComponent,
+    CompHostDirective,
+    PoorComponent,
+    AverageComponent,
+    GoodComponent
+  ],
+  entryComponents: [ 
+	PoorComponent,
+	AverageComponent,
+	GoodComponent 
   ],
   imports: [
     BrowserModule,
 	FormsModule,
 	AppRoutingModule
   ],
-  providers: [UsersService],
+  providers: [UsersService, CompService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

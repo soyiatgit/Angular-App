@@ -4,14 +4,14 @@
         <div ngModelGroup="personal"><!--clubs name and age into a personal property in form data-->
             <div class="form-group">
                  <label>Name</label>
-                 <input type="text" name="name" class="form-control" #userName="ngModel" [(ngModel)] ="user.personal.name" required/> <!--ngModel and #property are must for form elements-->
+                 <input type="text" name="name" class="form-control" #userName="ngModel" [(ngModel)] ="user.personal.name" (input) = "markChanges()" required/> <!--ngModel and #property are must for form elements-->
                  <div [hidden] ="userName.valid || userName.pristine" class="alert alert-danger"><!--assign ngModel to #property to access element data-->
                     <span>Please enter the name</span>
                  </div>
             </div>
             <div class="form-group">
                 <label>Age</label>
-                <input type="text" name="age" pattern="^[0-9]+$" class="form-control" #userAge="ngModel" [(ngModel)] ="user.personal.age" required/><!--use [ngModel] = "propertyFromComponentClass" for data binding-->
+                <input type="text" name="age" pattern="^[0-9]+$" class="form-control" #userAge="ngModel" [(ngModel)] ="user.personal.age" (input) = "markChanges()" required/><!--use [ngModel] = "propertyFromComponentClass" for data binding-->
                 <div *ngIf="userAge.errors && (userAge.dirty || userAge.touched)" class="alert alert-danger">
                     <div *ngIf ="userAge.errors.pattern"><span>Please enter a number</span></div>
                     <div *ngIf="userAge.errors.required"><span>Please enter the age</span></div>
@@ -20,16 +20,28 @@
         </div>
 		<div class="form-group">
             <label>Profession</label>
-            <input type="text" name="profession" class="form-control" #userRole [(ngModel)] ="user.profession" required/><!--use [(ngModel)] = "propertyFromComponentClass" for two-way data binding-->
+            <input type="text" name="profession" class="form-control" #userRole [(ngModel)] ="user.profession" (input) = "markChanges()" required/><!--use [(ngModel)] = "propertyFromComponentClass" for two-way data binding-->
         </div>
         <div class="form-group">
             <label>Role</label>
-            <input type="text" name="role" class="form-control" #userRole [(ngModel)] ="user.role" required/><!--use [(ngModel)] = "propertyFromComponentClass" for two-way data binding-->
+            <input type="text" name="role" class="form-control" #userRole [(ngModel)] ="user.role" (input) = "markChanges()" required/><!--use [(ngModel)] = "propertyFromComponentClass" for two-way data binding-->
         </div>
         <div class="form-group">
             <label>Hobbies</label>
-            <input type="text" name="hobby" class="form-control" #userHobby [(ngModel)] ="user.hobby" required/>
+            <input type="text" name="hobby" class="form-control" #userHobby [(ngModel)] ="user.hobby" (input) = "markChanges()" required/>
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">{{button}}</button>
     </form>
+	<app-dialog #dialog>
+		<div class="app-modal-header">
+		  {{dialogHeadText}}
+		</div>
+		<div class="app-modal-body">
+		  {{dialogBodyText}}
+		</div>
+		<div class="app-modal-footer">
+		  <button type="button" class="btn btn-default" (click)="dialog.hide()">Cancel</button>
+		  <button type="button" class="btn btn-primary" (click)="saveChanges(userForm.value)">Save changes</button>
+		</div>
+    </app-dialog>
 </div>

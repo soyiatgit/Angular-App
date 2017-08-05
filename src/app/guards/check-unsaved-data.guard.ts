@@ -9,6 +9,6 @@ export class CheckUnsavedDataGuard implements CanDeactivate<AddUsersComponent> {
     // call any method of component instance to provide a boolean or promise or Observable return value.
     // The return Value should Be of type : Observable<boolean>|Promise<boolean>|boolean
     canDeactivate(component: AddUsersComponent, route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return component.isAnyDataUnsaved();
+        return component.isNavigationSafe();
     }
 }

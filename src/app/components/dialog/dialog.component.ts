@@ -1,24 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent {
 
-  constructor(private _route : ActivatedRoute, private _router : Router) { }
 
-	  ngOnInit() {
+	  public visible = false;
+	  private visibleAnimate = false;
+
+	  constructor(){}
+
+	  public show(): void {
+		this.visible = true;
+		setTimeout(() => this.visibleAnimate = true, 100);
 	  }
-	
-	positive(){
-		this._router.navigate([{ outlets: { dialog: null }}]);
-	}
-	
-	negative(){
-		this._router.navigate([{ outlets: { dialog: null }}]);
-	}
+
+	  public hide(): void {
+		this.visibleAnimate = false;
+		setTimeout(() => this.visible = false, 300);
+	  }
+
+	  public onContainerClicked(event: MouseEvent): void {
+		if ((<HTMLElement>event.target).classList.contains('modal')) {
+		  this.hide();
+		}
+	  }
 	
 }
