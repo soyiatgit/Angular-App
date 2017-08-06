@@ -20,6 +20,7 @@ const routes: Routes = [
 	  outlet: 'dialog'
 	},
 	{ path: 'dynamicloading', component: HostComponent },
+	{ path: 'lazyLoading', loadChildren: 'app/lazyModule/lazy.module#LazyModule' },
     //the below wild card path matches any url entered in browser, so if the entered url doesn't match any of the above url; the below component is displayed.
     //Make sure this is at the end else it will always get matched first and no other routes will be looked up for matching. This can be used for displaying 
     //Page not found kind of components

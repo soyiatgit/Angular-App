@@ -18,11 +18,13 @@ constructor(private _userService: UsersService, private _route: ActivatedRoute, 
 	private userDataChanged : boolean = false;
 	private dialogBodyText : string = "You have unsaved changed. Do you want to proceed ? ";
 	private dialogHeadText: string = "Confirm";
+	private nextUrl : any;
 	@ViewChild(DialogComponent) dialog : DialogComponent;
 	
     ngOnInit() {
         //the snapshot approach do not work if you navigate from a component to same component (even with different data).
         //This is because Angular doesn't create new component in such case and utilizes old DOM and bindings.
+		this.nextUrl = null;
         let user = this._route.snapshot.data.user || null;
 		this.button = this._route.snapshot.params['btn'] || this._route.snapshot.data['btn'];
 		if(user)
@@ -35,6 +37,7 @@ constructor(private _userService: UsersService, private _route: ActivatedRoute, 
 	
     onSubmit(formValue: any) {
 		this.saveChanges(formValue);
+        this._router.navigate(['/users']);
     }
 	
 	saveChanges(formValue : any){
@@ -43,15 +46,22 @@ constructor(private _userService: UsersService, private _route: ActivatedRoute, 
 		if(this.button !== "Edit"){
 			this._userService.addUser(formValue);
 		}
-        this._router.navigate(['/users']);
+		if(this.nextUrl)
+			this._router.navigate([this.nextUrl]);
 	}
 	
 	checkUnsavedChanges(){
 		return this.userDataChanged;
 	}
 	
-	isNavigationSafe(){
-		this.dialog.show();
-		return !this.userDataChanged;
+	isNavigationSafe(url){
+		if(this.userDataChanged){
+			this.nextUrl = url;
+			this.dialog.show();
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 }
