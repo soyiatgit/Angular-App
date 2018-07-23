@@ -1,3 +1,7 @@
+# Important:
+
+A tilde (~) sign in package.json matches the middle number (as in ~1.2.3 will match the latest till 1.2.x but will not match 1.2.3) while the caret (^) sign matches the first number (as in ^1.2.3 will match anything like 1.x.x but will hold off at only at 2.x.x).
+
 # Angular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
