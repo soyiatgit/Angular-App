@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-link',
-  templateUrl: './lazylink.component.html',
-  styleUrls: ['./lazylink.component.css']
+  templateUrl: './lazylink.component.html'
 })
 export class LinkComponent implements OnInit {
 

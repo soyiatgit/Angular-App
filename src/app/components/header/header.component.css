@@ -1,6 +1,7 @@
 .header{
     height:70px;
     background-color:#eee;
+    text-align: right;
 }
 .nav_link{
     position :relative;

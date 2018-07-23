@@ -2,8 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-good',
-  templateUrl: './good.component.html',
-  styleUrls: ['./good.component.css']
+  templateUrl: './good.component.html'
 })
 export class GoodComponent implements OnInit {
 	

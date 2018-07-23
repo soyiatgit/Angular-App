@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="form-container">
+        <p class="form-heading">Reactive Forms</p>
+        <!-- we can directly bind the formGroup object from our model here
+         There is no need to use ngForm directive and creating a reference
+        variable as is the case in template-driven forms -->
+        <form [formGroup]="personForm" (ngSubmit)="save()">
+            <fieldset>
+                <div class="form-group">
+                    <label class="form-label" for="name">Name:</label>
+                    <input class="form-input form-control"
+                        formControlName="name"
+                        type="text"
+                        id="name" />
+                    <span class="form-error" *ngIf="personForm.controls.name.touched && personForm.controls.name.errors?.required">
+                        The first name is required.
+                    </span>
+                    <span class="form-error" *ngIf="personForm.controls.name.touched && personForm.controls.name.errors?.maxlength">
+                        The first name can only have 10 characters.
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email:</label>
+                    <input class="form-input form-control"
+                            formControlName="email"
+                            type="text"
+                            id="email" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="age">Age:</label>
+                    <input class="form-input form-control"
+                            formControlName="age"
+                            type="text"
+                            id="age" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="description">Rating:</label>
+                    <input class="form-input form-control"
+                            formControlName="rating"
+                            type="text"
+                            id="description" />
+                </div>
+                <span class="form-error" *ngIf="personForm.controls.rating.touched && personForm.controls.rating.errors?.rangeValidation">
+                    The rating should be between 1 and 5.
+                </span>
+
+                <div class="form-group">
+                    <label class="form-label" for="name">Gender:</label>
+                    <div>
+                        <label class="form-label" for="name">Male:</label>
+                        <input class="form-input"
+                                formControlName="gender"
+                                type="radio"
+                                id="male-gender"
+                                name="gender"
+                                value="male" />
+                        <label class="form-label" for="name">Female:</label>
+                        <input class="form-input"
+                                formControlName="gender"
+                                type="radio"
+                                id="female-gender"
+                                name="gender"
+                                value="female" />
+                    </div>
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary" [disabled]="!personForm.valid">Save</button>
+            <button type="submit" class="btn btn-secondary" (click)="updateValidations()">Remove Validations</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+.form-heading {
+    background-color: #0f6092;
+    padding: 20px;
+    font-size:20px;
+    color:white;
+}
+
+.form-error {
+    color: red;
+    padding: 2px;
+}
